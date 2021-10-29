@@ -39,17 +39,20 @@ class Cards(QMainWindow):
     def start(self):
         if self.index_current_word >= 0:
             self.btn_card.setText(self.all_words_list[self.index_current_word][1].lower())
-            self.btn_card.setStyleSheet("background-color: grey; border: 0.5")
+            self.btn_card.setStyleSheet("background-color: grey; border: 0.5; font-size: 30px; color: white")
             self.btn_card.clicked.connect(self.change_word)
         else:
-            self.btn_card.setText('Слова закончились!')
+            self.btn_card.setText('Слова закончились!\n'
+                                  'Выберите количество\n'
+                                  'карточек')
+            self.btn_card.setStyleSheet("background-color: grey; border: 0.5; font-size: 30px; color: red")
             self.btn_card.setEnabled(False)
             self.btn_next.setEnabled(False)
             self.btn_complete.setEnabled(False)
 
     def change_word(self):
         self.btn_card.setText(self.all_words_list[self.index_current_word][1])
-        self.btn_card.setStyleSheet("background-color: red; border: 0.5")
+        self.btn_card.setStyleSheet("background-color: red; border: 0.5; font-size: 30px; color: white")
         self.btn_card.clicked.connect(self.start)
 
     def next_word(self):
