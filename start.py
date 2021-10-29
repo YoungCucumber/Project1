@@ -9,7 +9,7 @@ class Entre(QMainWindow):
         super().__init__()
         self.db = db
         uic.loadUi('./Designs/start.ui', self)
-        QApplication.setStyle("Fusion")
+        QApplication.setStyle("Windows")
         self.setWindowTitle('Вход')
         self.run()
 
