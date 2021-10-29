@@ -37,7 +37,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="btn_card">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>210</x>
       <y>120</y>
       <width>361</width>
       <height>321</height>
@@ -70,7 +70,7 @@ color: rgb(255, 255, 255);</string>
      <pixmap>logo.png</pixmap>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkbox_addselect">
+   <widget class="QCheckBox" name="checkbox_addfavourites">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -94,10 +94,10 @@ color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="btn_next">
     <property name="geometry">
      <rect>
-      <x>600</x>
-      <y>370</y>
+      <x>610</x>
+      <y>150</y>
       <width>131</width>
-      <height>26</height>
+      <height>261</height>
      </rect>
     </property>
     <property name="font">
@@ -113,35 +113,13 @@ color: rgb(255, 255, 255);</string>
      <string>Следующее</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_learn">
+   <widget class="QPushButton" name="btn_complete">
     <property name="geometry">
      <rect>
-      <x>600</x>
-      <y>130</y>
+      <x>40</x>
+      <y>150</y>
       <width>131</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>20</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-background-color: rgba(255, 38, 0, 150);</string>
-    </property>
-    <property name="text">
-     <string>Изучать еще</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_checked">
-    <property name="geometry">
-     <rect>
-      <x>600</x>
-      <y>250</y>
-      <width>131</width>
-      <height>31</height>
+      <height>261</height>
      </rect>
     </property>
     <property name="font">
@@ -166,15 +144,18 @@ background-color: rgba(0, 144, 81, 128);</string>
       <height>23</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 212, 121, 0);</string>
+    </property>
     <property name="value">
      <number>24</number>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="lbl_push">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>70</y>
+      <x>210</x>
+      <y>60</y>
       <width>371</width>
       <height>61</height>
      </rect>
@@ -190,6 +171,67 @@ background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string>Нажмите, чтобы увидеть обратную сторону</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spnbox_amount">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>30</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 38, 0, 41);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="maximum">
+     <number>477</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_choose">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>10</y>
+      <width>231</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Выберете количество карточек</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_apply">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>80</y>
+      <width>81</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgba(4, 51, 255, 82);</string>
+    </property>
+    <property name="text">
+     <string>Применить</string>
     </property>
    </widget>
   </widget>

@@ -40,9 +40,9 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>310</y>
-      <width>361</width>
-      <height>191</height>
+      <y>390</y>
+      <width>751</width>
+      <height>131</height>
      </rect>
     </property>
     <property name="font">
@@ -62,9 +62,9 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>90</y>
-      <width>361</width>
-      <height>191</height>
+      <y>110</y>
+      <width>371</width>
+      <height>131</height>
      </rect>
     </property>
     <property name="font">
@@ -83,10 +83,10 @@ color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="btn_cards">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>90</y>
-      <width>361</width>
-      <height>191</height>
+      <x>410</x>
+      <y>110</y>
+      <width>371</width>
+      <height>131</height>
      </rect>
     </property>
     <property name="font">
@@ -105,10 +105,10 @@ color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="btn_test">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>310</y>
-      <width>361</width>
-      <height>191</height>
+      <x>410</x>
+      <y>250</y>
+      <width>371</width>
+      <height>131</height>
      </rect>
     </property>
     <property name="font">
@@ -122,6 +122,28 @@ color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>ТЕСТ</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_theory">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>250</y>
+      <width>371</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 212, 121);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>ТЕОРИЯ</string>
     </property>
    </widget>
   </widget>

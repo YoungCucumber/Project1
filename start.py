@@ -1,33 +1,46 @@
-import csv
-import sys
-
-# from registration_window import Registration
+from registration import Registration
+from menu import Menu
 from PyQt5 import uic, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
 
 class Entre(QMainWindow):
-    def __init__(self):
+    def __init__(self, db):
         super().__init__()
-        uic.loadUi('start.ui', self)
+        self.db = db
+        uic.loadUi('./Designs/start.ui', self)
         QApplication.setStyle("Fusion")
         self.setWindowTitle('Вход')
-        # self.run()
+        self.run()
 
-    # def run(self):
-        # self.btn_registration.clicked.connect(self.registration)
-        # self.btn_entre.clicked.connect(self.check)
+    def run(self):
+        self.btn_entre.clicked.connect(self.check)
+        self.btn_registration.clicked.connect(self.registration)
 
-    # def registration(self):
-    #     print(12345)
-    #     self.st = Registration(self)
-    #     self.hide()
-    #     self.st.show()
-    #
-    # def exit(self):
-    #     sys.exit(0)
+    def registration(self):
+        self.st = Registration(self.db)
+        self.hide()
+        self.st.show()
 
-app = QApplication(sys.argv)
-ex = Entre()
-ex.show()
-sys.exit(app.exec())
+    def check(self):
+        self.statusBar().setStyleSheet("background-color: #FF0000")
+        # проверка на пустые поля
+        if self.ledit_login.text() == '' and self.ledit_password.text() != '':
+            self.statusBar().showMessage('Введите логин')
+        elif self.ledit_password.text() == '' and self.ledit_login.text() != '':
+            self.statusBar().showMessage('Введите пароль')
+        elif self.ledit_login.text() == '' and self.ledit_password.text() == '':
+            self.statusBar().showMessage('Введите логин и пароль')
+        else:
+            if self.db.check_login_exist(self.ledit_login.text()):
+                if self.db.check_right_password(self.ledit_password.text(), self.ledit_login.text()):
+                    self.menu()
+                else:
+                    self.statusBar().showMessage('Неверный пароль')
+            else:
+                self.statusBar().showMessage('Нет пользователя с таким логином')
+
+    def menu(self):
+        self.st = Menu(self.db)
+        self.hide()
+        self.st.show()
