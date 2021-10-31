@@ -8,25 +8,28 @@ class DataBase:
         self.cur = self.con.cursor()
         self.count_users = 0
         self.fill_list_of_words_table()
+        self.current_user = None
 
     def fill_list_of_words_table(self):
         file = open('words.txt', encoding='utf-8').readlines()
         for i, line in enumerate(file):
             line = line.strip()
-            self.cur.execute("""INSERT or REPLACE INTO list_of_words VALUES (?, ?)""", (i + 1, line)).fetchone()
+            self.cur.execute("""INSERT or REPLACE INTO list_of_words VALUES (?, ?)""", (i, line)).fetchone()
             self.con.commit()
 
     def fill_user_table(self, login, password):
-        self.count_users += 1
-        self.cur.execute("""INSERT INTO users(login, password, favourites)
-                    VALUES(?, ?, ?)""", (login, password, '')).fetchall()
+        id_previous = self.cur.execute("""SELECT * FROM Users""").fetchall()[-1][0]
+        self.cur.execute("""INSERT INTO users(login, password, favourite)
+                    VALUES(?, ?, ?)""", (login, password, id_previous + 1)).fetchall()
         self.con.commit()
+        self.current_user = id_previous + 1
         for i in self.cur.execute("""SELECT * FROM Users"""):
             print(i)
 
     def check_right_password(self, password, login):
         data_about_user = self.cur.execute("""SELECT * FROM Users WHERE login=? """, (login,)).fetchone()
         if password == data_about_user[2]:
+            self.current_user = data_about_user[0]
             return True
 
     def check_login_exist(self, login):
@@ -40,3 +43,10 @@ class DataBase:
         words = self.cur.execute("""SELECT * FROM list_of_words""").fetchall()
         shuffle(words)
         return words[:n]
+
+    def word_by_id(self, i):
+        return self.cur.execute("""SELECT word FROM list_of_words WHERE id=?""", (i,)).fetchone()
+
+    def fill_favourites(self, favourite_words):
+        self.cur.execute("""INSERT or REPLACE INTO Favourites VALUES(?, ?)""", (self.current_user, favourite_words))
+        self.con.commit()
