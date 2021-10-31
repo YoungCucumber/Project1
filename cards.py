@@ -1,4 +1,3 @@
-import sys
 import random
 
 from PyQt5 import uic, QtWidgets
@@ -22,17 +21,9 @@ class Cards(QMainWindow):
 
     def run(self):
         if self.spnbox_amount.value() == 0:
-            self.btn_complete.setEnabled(False)
-            self.btn_next.setEnabled(False)
-            self.btn_card.setEnabled(False)
-            self.progressbr.setEnabled(False)
-            self.checkbox_addfavourites.setEnabled(False)
+            self.set_enabled()
         else:
-            self.btn_complete.setEnabled(True)
-            self.btn_next.setEnabled(True)
-            self.btn_card.setEnabled(True)
-            self.progressbr.setEnabled(True)
-            self.checkbox_addfavourites.setEnabled(True)
+            self.set_not_enabled()
             self.all_words_list = self.db.random_n_words(self.spnbox_amount.value())
             self.start()
 
@@ -42,13 +33,7 @@ class Cards(QMainWindow):
             self.btn_card.setStyleSheet("background-color: grey; border: 0.5; font-size: 30px; color: white")
             self.btn_card.clicked.connect(self.change_word)
         else:
-            self.btn_card.setText('Слова закончились!\n'
-                                  'Выберите количество\n'
-                                  'карточек')
-            self.btn_card.setStyleSheet("background-color: grey; border: 0.5; font-size: 30px; color: red")
-            self.btn_card.setEnabled(False)
-            self.btn_next.setEnabled(False)
-            self.btn_complete.setEnabled(False)
+            self.complete()
 
     def change_word(self):
         self.btn_card.setText(self.all_words_list[self.index_current_word][1])
@@ -71,11 +56,27 @@ class Cards(QMainWindow):
                 self.index_current_word = 0
         if len(self.all_words_list) == 0:
             self.btn_card.setText('Слова закончились!')
-            self.btn_card.setEnabled(False)
-            self.btn_next.setEnabled(False)
-            self.btn_complete.setEnabled(False)
+            self.set_enabled()
         else:
             self.start()
+
+    def set_enabled(self):
+        self.btn_complete.setEnabled(False)
+        self.btn_next.setEnabled(False)
+        self.btn_card.setEnabled(False)
+        self.progressbr.setEnabled(False)
+        self.checkbox_addfavourites.setEnabled(False)
+        self.spnbox_amount.setEnabled(True)
+        self.btn_apply.setEnabled(True)
+
+    def set_not_enabled(self):
+        self.btn_complete.setEnabled(True)
+        self.btn_next.setEnabled(True)
+        self.btn_card.setEnabled(True)
+        self.progressbr.setEnabled(True)
+        self.checkbox_addfavourites.setEnabled(True)
+        self.spnbox_amount.setEnabled(False)
+        self.btn_apply.setEnabled(False)
 
     def menu_return(self):
         self.st = self.menu

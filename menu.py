@@ -1,6 +1,3 @@
-import csv
-import sys
-
 from PyQt5 import uic, QtWidgets
 from cards import Cards
 # from favourites import Favourites
@@ -15,7 +12,7 @@ class Menu(QMainWindow):
         super().__init__()
         uic.loadUi('./Designs/menu.ui', self)
         self.db = db
-        QApplication.setStyle("Fusion")
+        QApplication.setStyle("Windows")
         self.setWindowTitle('Меню')
         self.run()
 
