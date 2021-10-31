@@ -36,41 +36,16 @@ class Registration(QMainWindow):
         self.btn_ok.clicked.connect(self.check_password_and_login)
 
     def check_normal_password(self):
-        mac_keyboard = list("qwertyuiop_asdfghjkl_zxcvbnm_йцукенгшщзхъ_фывапролджэё_ячсмитьбю")
-        is_upper = False
-        is_lower = False
-        is_length = False
-        is_digit = False
-        is_not_combination = True
-        if len(self.ledit_password.text()) > 8:
-            is_length = True
+        if len(self.ledit_password.text()) < 8:
+            raise LengthError('Слишком короткий пароль')
         for i in list(self.ledit_password.text()):
             if i.isupper():
-                is_upper = True
+                raise LetterError('Все буквы используются в верхнем регистре')
             if i.islower():
-                is_lower = True
+                raise LetterError('Все буквы используются в нижнем регистре')
             if i.isdigit():
-                is_digit = True
-        password = self.ledit_password.text().lower()
-        for i in range(len(password) - 2):
-            if password[i].isalpha() and password[i + 1].isalpha() and password[i + 2].isalpha():
-                temp_letter_index = mac_keyboard.index(password[i])
-                if temp_letter_index < len(mac_keyboard) - 3:
-                    if password[i + 1] == mac_keyboard[temp_letter_index + 1] \
-                            and password[i + 2] == mac_keyboard[temp_letter_index + 2]:
-                        is_not_combination = False
-                        break
-
-        if not is_length:
-            raise LengthError('Слишком короткий пароль')
-        elif not (is_upper and is_lower):
-            raise LetterError('Все буквы используются в нижем регистре')
-        elif not is_digit:
-            raise DigitError('В пароле нет ни одной цифры')
-        elif not is_not_combination:
-            raise SequenceError('Пароль легко подобрать')
-        else:
-            return "ok"
+                raise DigitError('В пароле нет ни одной цифры')
+        return "ok"
 
     def check_password_and_login(self):
         self.statusBar().setStyleSheet("background-color: #FF0000")
@@ -89,16 +64,10 @@ class Registration(QMainWindow):
                 if res == "ok":
                     password_ok = True
                     self.statusBar().showMessage('')
-            except LengthError as a:
-                self.statusBar().showMessage(f"{a}")
-            except LetterError as a:
-                self.statusBar().showMessage(f"{a}")
-            except DigitError as a:
-                self.statusBar().showMessage(f"{a}")
-            except SequenceError as a:
+            except PasswordError as a:
                 self.statusBar().showMessage(f"{a}")
             # проверка логина
-        res = self.db.check_exist_login_registration(self.ledit_login.text())
+        res = self.db.check_login_exist(self.ledit_login.text())
         if res:
             self.statusBar().showMessage('Пользователь с таким логином уже существует')
         elif not res and password_ok:

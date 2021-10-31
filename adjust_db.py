@@ -10,7 +10,7 @@ class DataBase:
         self.fill_list_of_words_table()
 
     def fill_list_of_words_table(self):
-        file = open('words.txt').readlines()
+        file = open('words.txt', encoding='utf-8').readlines()
         for i, line in enumerate(file):
             line = line.strip()
             self.cur.execute("""INSERT or REPLACE INTO list_of_words VALUES (?, ?)""", (i + 1, line)).fetchone()
@@ -18,7 +18,6 @@ class DataBase:
 
     def fill_user_table(self, login, password):
         self.count_users += 1
-        # self.cur.execute("""INSERT INTO Users VALUES(?, ?, ?, ?)""", (self.count_users, login, password, '')).fetchall()
         self.cur.execute("""INSERT INTO users(login, password, favourites)
                     VALUES(?, ?, ?)""", (login, password, '')).fetchall()
         self.con.commit()
@@ -31,13 +30,6 @@ class DataBase:
             return True
 
     def check_login_exist(self, login):
-        data_login = self.cur.execute("""SELECT login FROM Users WHERE login=?""", (login,)).fetchone()
-        if data_login:
-            return True
-        else:
-            return False
-
-    def check_exist_login_registration(self, login):
         data_login = self.cur.execute("""SELECT login FROM Users WHERE login=?""", (login,)).fetchone()
         if data_login:
             return True
