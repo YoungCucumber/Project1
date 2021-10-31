@@ -10,7 +10,6 @@ class Cards(QMainWindow):
         uic.loadUi('./Designs/cards.ui', self)
         self.db = db
         self.menu = menu
-        QApplication.setStyle("Windows")
         self.setWindowTitle('Карточки')
         self.index_current_word = 0
         self.btn_apply.clicked.connect(self.run)

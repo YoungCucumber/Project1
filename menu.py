@@ -12,7 +12,6 @@ class Menu(QMainWindow):
         super().__init__()
         uic.loadUi('./Designs/menu.ui', self)
         self.db = db
-        QApplication.setStyle("Windows")
         self.setWindowTitle('Меню')
         self.run()
 
