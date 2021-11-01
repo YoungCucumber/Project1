@@ -24,12 +24,15 @@ class Cards(QMainWindow):
         else:
             self.set_not_enabled()
             self.all_words_list = self.db.random_n_words(self.spnbox_amount.value())
+            self.checkbox_is_favourite()
             self.start()
 
     def start(self):
         if self.index_current_word >= 0:
             self.btn_card.setText(self.all_words_list[self.index_current_word][1].lower())
+            self.checkbox_is_favourite()
             self.btn_card.setStyleSheet("background-color: grey; border: 0.5; font-size: 30px; color: white")
+            self.checkbox_is_favourite()
             self.btn_card.clicked.connect(self.change_word)
         else:
             self.complete()
@@ -76,6 +79,26 @@ class Cards(QMainWindow):
         self.checkbox_addfavourites.setEnabled(True)
         self.spnbox_amount.setEnabled(False)
         self.btn_apply.setEnabled(False)
+
+    def checkbox_is_favourite(self):
+        favourite_words = self.db.ckeck_is_favourite()
+        if len(favourite_words) > 0:
+            self.favourite_words_list = favourite_words[0][0].split()
+            www = self.all_words_list[self.index_current_word][1]
+            if self.all_words_list[self.index_current_word][1] in self.favourite_words_list:
+                self.checkbox_addfavourites.setChecked(True)
+            else:
+                self.checkbox_addfavourites.setChecked(False)
+        else:
+            self.checkbox_addfavourites.setChecked(False)
+        self.checkbox_addfavourites.stateChanged.connect(self.checkbox_add_remove)
+
+    def checkbox_add_remove(self):
+        if self.checkbox_addfavourites.isChecked():
+            self.favourite_words_list.append(self.all_words_list[self.index_current_word][1])
+        else:
+            self.favourite_words_list.remove(self.all_words_list[self.index_current_word][1])
+        self.db.fill_favourites(' '.join(self.favourite_words_list))
 
     def menu_return(self):
         self.st = self.menu

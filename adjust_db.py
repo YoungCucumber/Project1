@@ -23,8 +23,6 @@ class DataBase:
                     VALUES(?, ?, ?)""", (login, password, id_previous + 1)).fetchall()
         self.con.commit()
         self.current_user = id_previous + 1
-        for i in self.cur.execute("""SELECT * FROM Users"""):
-            print(i)
 
     def check_right_password(self, password, login):
         data_about_user = self.cur.execute("""SELECT * FROM Users WHERE login=? """, (login,)).fetchone()
@@ -50,3 +48,8 @@ class DataBase:
     def fill_favourites(self, favourite_words):
         self.cur.execute("""INSERT or REPLACE INTO Favourites VALUES(?, ?)""", (self.current_user, favourite_words))
         self.con.commit()
+
+    def ckeck_is_favourite(self):
+        favourites_string = (self.cur.execute("""SELECT word FROM Favourites 
+        WHERE id=?""", (self.current_user,)).fetchall())
+        return favourites_string
