@@ -7,10 +7,10 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 class Cards(QMainWindow):
     def __init__(self, db, menu):
         super().__init__()
-        uic.loadUi('./Designs/cards.ui', self)
+        uic.loadUi(FILE_CARDS, self)
         self.db = db
         self.menu = menu
-        self.setWindowTitle('Карточки')
+        self.setWindowTitle(CARDS_TITLE)
         self.index_current_word = 0
         self.run_functions()
 
@@ -19,7 +19,7 @@ class Cards(QMainWindow):
         self.btn_next.clicked.connect(self.next_word)
         self.btn_menu.clicked.connect(self.menu_return)
         self.btn_complete.clicked.connect(self.complete)
-        self.progressbr.setValue(100)
+        self.progressbr.setValue(START_STATUSBAR)
         self.run()
 
     def run(self):
@@ -36,7 +36,7 @@ class Cards(QMainWindow):
         if self.index_current_word >= 0:
             self.btn_card.setText(self.all_words_list[self.index_current_word][1].lower())
             self.checkbox_is_favourite()
-            self.btn_card.setStyleSheet("background-color: grey; border: 0.5; font-size: 30px; color: white")
+            self.btn_card.setStyleSheet(BTN_GREY)
             self.checkbox_is_favourite()
             self.btn_card.clicked.connect(self.change_word)
         else:
@@ -44,7 +44,7 @@ class Cards(QMainWindow):
 
     def change_word(self):
         self.btn_card.setText(self.all_words_list[self.index_current_word][1])
-        self.btn_card.setStyleSheet("background-color: red; border: 0.5; font-size: 30px; color: white")
+        self.btn_card.setStyleSheet(BTN_RED)
         self.btn_card.clicked.connect(self.start)
 
     def next_word(self):
@@ -63,8 +63,8 @@ class Cards(QMainWindow):
             if self.index_current_word > len(self.all_words_list) - 1:
                 self.index_current_word = 0
         if len(self.all_words_list) == 0:
-            self.btn_card.setText('Слова закончились!')
-            self.progressbr.setValue(100)
+            self.btn_card.setText(END)
+            self.progressbr.setValue(START_STATUSBAR)
             self.set_enabled()
         else:
             self.start()
@@ -114,7 +114,7 @@ class Cards(QMainWindow):
         self.progressbar_change_value()
 
     def progressbar_change_value(self):
-        self.progressbr.setValue(100 * len(self.all_words_list) / self.len_all_cards_begin)
+        self.progressbr.setValue(START_STATUSBAR * len(self.all_words_list) / self.len_all_cards_begin)
 
     def menu_return(self):
         self.st = self.menu
