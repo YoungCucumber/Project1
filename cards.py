@@ -88,14 +88,17 @@ class Cards(QMainWindow):
                 self.checkbox_addfavourites.setChecked(True)
             else:
                 self.checkbox_addfavourites.setChecked(False)
-            self.checkbox_add_remove()
+            self.checkbox_state_changed()
+
+    def checkbox_state_changed(self):
+        self.checkbox_addfavourites.stateChanged.connect(self.checkbox_add_remove)
 
     def checkbox_add_remove(self):
         if (self.checkbox_addfavourites.isChecked()
-                and self.all_words_list[self.index_current_word][1] not in self.favourite_words_list):
+                and (self.all_words_list[self.index_current_word][1] not in self.favourite_words_list)):
             self.favourite_words_list.append(self.all_words_list[self.index_current_word][1])
         elif (not self.checkbox_addfavourites.isChecked()
-              and self.all_words_list[self.index_current_word][1] in self.favourite_words_list):
+              and (self.all_words_list[self.index_current_word][1] in self.favourite_words_list)):
             self.favourite_words_list.remove(self.all_words_list[self.index_current_word][1])
         self.db.fill_favourites(' '.join(self.favourite_words_list))
 
