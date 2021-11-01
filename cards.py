@@ -12,10 +12,14 @@ class Cards(QMainWindow):
         self.menu = menu
         self.setWindowTitle('Карточки')
         self.index_current_word = 0
+        self.run_functions()
+
+    def run_functions(self):
         self.btn_apply.clicked.connect(self.run)
         self.btn_next.clicked.connect(self.next_word)
         self.btn_menu.clicked.connect(self.menu_return)
         self.btn_complete.clicked.connect(self.complete)
+        self.progressbr.setValue(100)
         self.run()
 
     def run(self):
@@ -24,6 +28,7 @@ class Cards(QMainWindow):
         else:
             self.set_not_enabled()
             self.all_words_list = self.db.random_n_words(self.spnbox_amount.value())
+            self.len_all_cards_begin = len(self.all_words_list)
             self.checkbox_is_favourite()
             self.start()
 
@@ -52,12 +57,14 @@ class Cards(QMainWindow):
     def complete(self):
         if len(self.all_words_list) > 0:
             self.all_words_list.remove(self.all_words_list[self.index_current_word])
+            self.count_rest_words()
             if self.index_current_word == len(self.all_words_list) - 1:
                 self.index_current_word = 0
             if self.index_current_word > len(self.all_words_list) - 1:
                 self.index_current_word = 0
         if len(self.all_words_list) == 0:
             self.btn_card.setText('Слова закончились!')
+            self.progressbr.setValue(100)
             self.set_enabled()
         else:
             self.start()
@@ -101,6 +108,13 @@ class Cards(QMainWindow):
               and (self.all_words_list[self.index_current_word][1] in self.favourite_words_list)):
             self.favourite_words_list.remove(self.all_words_list[self.index_current_word][1])
         self.db.fill_favourites(' '.join(self.favourite_words_list))
+
+    def count_rest_words(self):
+        self.spnbox_amount.setValue(len(self.all_words_list))
+        self.progressbar_change_value()
+
+    def progressbar_change_value(self):
+        self.progressbr.setValue(100 * len(self.all_words_list) / self.len_all_cards_begin)
 
     def menu_return(self):
         self.st = self.menu
