@@ -20,7 +20,7 @@ class Favourites(QMainWindow):
 
     def adjust_image(self):
         im = Image.open(IMAGE)
-        im2 = im.resize((300, 100))
+        im2 = im.resize(NEW_SIZE_IMAGE)
         im2.save(IMAGE_RESIZED)
 
     def run(self):
