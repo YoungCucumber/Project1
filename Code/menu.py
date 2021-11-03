@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 class Menu(QMainWindow):
     def __init__(self, db):
         super().__init__()
-        uic.loadUi('./Designs/menu.ui', self)
+        uic.loadUi('../Designs/menu.ui', self)
         self.db = db
         self.setWindowTitle('Меню')
         self.run()

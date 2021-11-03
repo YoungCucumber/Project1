@@ -69,7 +69,7 @@ class Favourites(QMainWindow):
         self.btn_cards_favourites.resize(191, 61)
         self.btn_cards_favourites.setStyleSheet(BTN_CARDS_FAVOURITE_STYLE)
         self.btn_cards_favourites.setText(BTN_CARDS_FAVOURITE_TEXT)
-        self.btn_cards_favourites.clicked.connect(self.open_cards_favourites)
+        # self.btn_cards_favourites.clicked.connect(self.open_cards_favourites)
 
     def menu_return(self):
         for i in self.list_of_checkboxes:
@@ -79,3 +79,9 @@ class Favourites(QMainWindow):
         self.st = self.menu
         self.hide()
         self.st.show()
+
+    # def open_cards_favourites(self):
+    #     self.db.fill_favourites(' '.join(self.favourite_words))
+    #     self.st = CardsFavourites(self.db, self)
+    #     self.hide()
+    #     self.st.show()

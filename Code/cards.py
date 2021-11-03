@@ -13,6 +13,8 @@ class Cards(QMainWindow):
         self.menu = menu
         self.setWindowTitle(CARDS_TITLE)
         self.index_current_word = 0
+        self.btn_card.clicked.connect(self.change_word)
+        self.btn_card_isClicked = False
         self.run_functions()
 
     def run_functions(self):
@@ -34,19 +36,26 @@ class Cards(QMainWindow):
             self.start()
 
     def start(self):
+        self.btn_card_isClicked = False
         if self.index_current_word >= 0:
             self.btn_card.setText(self.all_words_list[self.index_current_word][1].lower())
             self.checkbox_is_favourite()
             self.btn_card.setStyleSheet(BTN_GREY)
-            self.checkbox_is_favourite()
-            self.btn_card.clicked.connect(self.change_word)
+            # self.checkbox_is_favourite()
         else:
             self.complete()
 
+
     def change_word(self):
-        self.btn_card.setText(self.all_words_list[self.index_current_word][1])
-        self.btn_card.setStyleSheet(BTN_RED)
-        self.btn_card.clicked.connect(self.start)
+        if self.btn_card_isClicked:
+            self.btn_card.setText(self.all_words_list[self.index_current_word][1].lower())
+            # self.checkbox_is_favourite()
+            self.btn_card.setStyleSheet(BTN_GREY)
+            # self.checkbox_is_favourite()
+        else:
+            self.btn_card.setText(self.all_words_list[self.index_current_word][1])
+            self.btn_card.setStyleSheet(BTN_RED)
+        self.btn_card_isClicked = not self.btn_card_isClicked
 
     def next_word(self):
         if self.index_current_word == len(self.all_words_list) - 1:

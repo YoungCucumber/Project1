@@ -13,6 +13,7 @@ class Test(QMainWindow):
         self.setWindowTitle(TEST_TITLE)
         self.answers = []
         self.keys = []
+        self.cword = 0
         self.run()
 
     def run(self):
@@ -32,16 +33,22 @@ class Test(QMainWindow):
             self.vowels_count()
 
     def vowels_count(self):
-        for word in self.all_words_list:
+        if self.cword < len(self.all_words_list):
+            self.btngroup = QButtonGroup()
+            self.main_word, word = self.all_words_list[self.cword][1], list(self.all_words_list[self.cword][1])
+            self.lbl_word.setText(self.main_word.lower())
             variants = []
-            self.question_word = word[1]
-            self.keys.append(self.question_word)
-            word = list(word[1])
+            self.keys.append(self.main_word)
             for i, letter in enumerate(word):
                 if letter.lower() in vowels:
-                    variants.append(self.question_word[:i].lower() + letter.upper() + self.question_word[i + 1:].lower())
+                    variants.append(self.main_word[:i].lower() + letter.upper() + self.main_word[i + 1:].lower())
             self.fill_layout(variants)
             self.btngroup.buttonClicked.connect(self.answer)
+        else:
+            self.cword = 0
+            self.set_enabled()
+            self.lbl_word.setText(LBL_WORD_CHOSE_AMOUNT)
+
 
     def fill_layout(self, variants):
         for elem in variants:
@@ -55,7 +62,8 @@ class Test(QMainWindow):
         self.answers.append(btn.text())
         for i in reversed(range(self.vrtcllayout.count())):
             self.vrtcllayout.itemAt(i).widget().setParent(None)
-        print(self.answers)
+        self.cword+=1
+        self.vowels_count()
 
     def set_enabled(self):
         self.progressbr.setEnabled(False)
