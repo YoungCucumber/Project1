@@ -5,9 +5,10 @@ from constants import *
 
 
 class Registration(QMainWindow):
-    def __init__(self, db):
+    def __init__(self, db, start):
         super().__init__()
         self.db = db
+        self.start = start
         uic.loadUi(FILE_REGISTRATION, self)
         self.setWindowTitle(REGISTRATION_TITLE)
         self.run()
@@ -17,13 +18,9 @@ class Registration(QMainWindow):
 
     def check_password_and_login(self):
         self.statusBar().setStyleSheet(EXCEPTION_STATUSBAR)
-        if self.ledit_login.text() == EMPTY_LINE and self.ledit_password.text() != EMPTY_LINE:
-            self.statusBar().showMessage(ENTER_LOGIN)
-        elif self.ledit_password.text() == EMPTY_LINE and self.ledit_login.text() != EMPTY_LINE:
-            self.statusBar().showMessage(ENTER_PASSWORD)
-        elif self.ledit_login.text() == EMPTY_LINE and self.ledit_password.text() == EMPTY_LINE:
-            self.statusBar().showMessage(ENTER_LOGIN_PASSWORD)
-        if self.ledit_login.text() != EMPTY_LINE and self.ledit_password.text() != EMPTY_LINE:
+        if self.ledit_login.text() == EMPTY_LINE or self.ledit_password.text() == EMPTY_LINE:
+            self.start.check_empty_lines()
+        else:
             self.create_user()
 
     def create_user(self):

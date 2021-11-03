@@ -20,13 +20,13 @@ class DataBase:
     def fill_user_table(self, login, password):
         id_previous = self.cur.execute("""SELECT * FROM Users""").fetchall()[-1][0]
         self.cur.execute("""INSERT INTO users(login, password, favourite)
-                    VALUES(?, ?, ?)""", (login, password, id_previous + 1)).fetchall()
+                    VALUES(?, ?, ?)""", (str(login), str(password), id_previous + 1)).fetchall()
         self.con.commit()
         self.current_user = id_previous + 1
 
     def check_right_password(self, password, login):
         data_about_user = self.cur.execute("""SELECT * FROM Users WHERE login=? """, (login,)).fetchone()
-        if password == data_about_user[2]:
+        if str(password) == str(data_about_user[2]):
             self.current_user = data_about_user[0]
             return True
 

@@ -20,58 +20,36 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>320</y>
+      <x>170</x>
+      <y>290</y>
       <width>461</width>
       <height>191</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="vrtcllayout"/>
    </widget>
-   <widget class="QLabel" name="lbl_task">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>80</y>
-      <width>521</width>
-      <height>121</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>20</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-background-color: rgba(255, 255, 255, 0);</string>
-    </property>
-    <property name="text">
-     <string>Какой из вариантов ударения в этом слове верный?</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="lbl_word">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>190</y>
-      <width>211</width>
+      <x>160</x>
+      <y>200</y>
+      <width>471</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <pointsize>30</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+     <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 38, 0);</string>
     </property>
     <property name="text">
-     <string>Слово строчными буквами</string>
+     <string>Выберите количество вопросов</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_menu">
@@ -93,23 +71,26 @@ background-color: rgba(255, 255, 255, 0);</string>
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Меню</string>
+     <string>Назад</string>
     </property>
    </widget>
    <widget class="QProgressBar" name="progressbr">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>520</y>
+      <y>510</y>
       <width>761</width>
       <height>23</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="value">
      <number>24</number>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="lbl_logo">
     <property name="geometry">
      <rect>
       <x>140</x>
@@ -126,6 +107,62 @@ color: rgb(255, 255, 255);</string>
     </property>
     <property name="pixmap">
      <pixmap>logo.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spnbox_amount">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>40</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 38, 0, 64);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="maximum">
+     <number>476</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_choose">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>10</y>
+      <width>261</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>17</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Выберите количество вопросов</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_apply">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>90</y>
+      <width>81</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgba(0, 150, 255, 128);</string>
+    </property>
+    <property name="text">
+     <string>Применить</string>
     </property>
    </widget>
   </widget>

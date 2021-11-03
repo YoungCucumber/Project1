@@ -9,6 +9,6 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     app.setStyle("Windows")
     db = DataBase()
-    ex = Entre(db)
+    ex = Entre(db, app)
     ex.show()
     sys.exit(app.exec())

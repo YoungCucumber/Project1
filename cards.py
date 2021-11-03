@@ -1,6 +1,7 @@
 import random
 
 from PyQt5 import uic, QtWidgets
+from constants import *
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
 

@@ -1,4 +1,4 @@
-from PyQt5 import uic, QtWidgets, QtGui
+from PyQt5 import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from constants import *
