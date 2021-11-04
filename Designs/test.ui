@@ -21,9 +21,9 @@
     <property name="geometry">
      <rect>
       <x>170</x>
-      <y>290</y>
+      <y>250</y>
       <width>461</width>
-      <height>191</height>
+      <height>251</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="vrtcllayout"/>
@@ -31,9 +31,9 @@
    <widget class="QLabel" name="lbl_word">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>150</x>
       <y>200</y>
-      <width>471</width>
+      <width>481</width>
       <height>31</height>
      </rect>
     </property>
@@ -163,6 +163,28 @@ background-color: rgba(0, 150, 255, 128);</string>
     </property>
     <property name="text">
      <string>Применить</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>179</x>
+      <y>120</y>
+      <width>441</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>25</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Какой из вариантов ударения верный?</string>
     </property>
    </widget>
   </widget>

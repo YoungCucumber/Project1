@@ -22,7 +22,7 @@ class Cards(QMainWindow):
         self.btn_next.clicked.connect(self.next_word)
         self.btn_menu.clicked.connect(self.menu_return)
         self.btn_complete.clicked.connect(self.complete)
-        self.progressbr.setValue(START_STATUSBAR)
+        self.progressbr.setValue(START_PROGRESSBAR)
         self.run()
 
     def run(self):
@@ -74,7 +74,7 @@ class Cards(QMainWindow):
                 self.index_current_word = 0
         if len(self.all_words_list) == 0:
             self.btn_card.setText(END)
-            self.progressbr.setValue(START_STATUSBAR)
+            self.progressbr.setValue(START_PROGRESSBAR)
             self.set_enabled()
         else:
             self.start()
@@ -124,7 +124,7 @@ class Cards(QMainWindow):
         self.progressbar_change_value()
 
     def progressbar_change_value(self):
-        self.progressbr.setValue(START_STATUSBAR * len(self.all_words_list) / self.len_all_cards_begin)
+        self.progressbr.setValue(START_PROGRESSBAR * len(self.all_words_list) / self.len_all_cards_begin)
 
     def menu_return(self):
         self.st = self.menu
