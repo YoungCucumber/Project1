@@ -78,7 +78,7 @@ background-color: rgba(255, 147, 0, 128);</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../resized.logo.png</pixmap>
+     <pixmap>../Code/resized.logo.png</pixmap>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_instruction">
@@ -96,7 +96,7 @@ background-color: rgba(255, 147, 0, 128);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgba(0, 143, 0, 77);
+     <string notr="true">background-color: rgba(0, 144, 81, 128);
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">

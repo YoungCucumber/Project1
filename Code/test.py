@@ -1,6 +1,7 @@
 from constants import *
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
+from results import Results
 
 vowels = 'ауоыиэяюёе'
 
@@ -40,7 +41,7 @@ class Test(QMainWindow):
             self.cword = 0
             self.set_enabled()
             self.lbl_word.setText(LBL_WORD_CHOOSE_AMOUNT)
-            self.create_btn_results()
+            self.show_results()
             self.lbl_word.move(150, 200)
 
     def create_variants(self):
@@ -67,12 +68,10 @@ class Test(QMainWindow):
             self.btngroup.addButton(self.btn_variant)
             self.vrtcllayout.addWidget(self.btn_variant)
 
-    def create_btn_results(self):
-        self.btn_show_results = QPushButton(self)
-        self.btn_show_results.move()
-        self.btn_show_results.resize()
-        self.btn_show_results.setText()
-        self.btn_show_results.clicked.connect(self.open_results)
+    def show_results(self):
+        self.st = Results(self.answers, self.keys, self)
+        self.hide()
+        self.st.show()
 
     def answer(self, btn):
         self.answers.append(btn.text())

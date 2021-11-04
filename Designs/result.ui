@@ -10,6 +10,12 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -23,7 +29,7 @@
       <x>-1</x>
       <y>60</y>
       <width>801</width>
-      <height>501</height>
+      <height>441</height>
      </rect>
     </property>
     <property name="widgetResizable">
@@ -35,34 +41,37 @@
        <x>0</x>
        <y>0</y>
        <width>797</width>
-       <height>497</height>
+       <height>437</height>
       </rect>
      </property>
-     <widget class="QLabel" name="label">
+     <widget class="QTableWidget" name="tablewdgt">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>781</width>
-        <height>41</height>
+        <x>0</x>
+        <y>0</y>
+        <width>801</width>
+        <height>441</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>20</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgba(255, 147, 0, 128);
-color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="text">
-       <string>Результаты всех тестов в csv таблице</string>
-      </property>
+      <column>
+       <property name="text">
+        <string>Новый столбец</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Ваш ответ</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Балл</string>
+       </property>
+      </column>
      </widget>
     </widget>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btn_menu">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -81,7 +90,70 @@ color: rgb(255, 255, 255);</string>
 background-color: rgba(255, 147, 0, 128);</string>
     </property>
     <property name="text">
-     <string>Меню</string>
+     <string>Назад</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_res">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>520</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 38, 0);</string>
+    </property>
+    <property name="text">
+     <string>Результат</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="ledit_total">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>662</x>
+      <y>511</y>
+      <width>131</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(0,144,81,128);
+color: rgb(255, 255, 255);</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>0</y>
+      <width>271</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../Code/resized.logo.png</pixmap>
     </property>
    </widget>
   </widget>

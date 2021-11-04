@@ -23,7 +23,6 @@ class Words(QMainWindow):
         im2 = im.resize(NEW_SIZE_IMAGE)
         im2.save(IMAGE_RESIZED)
 
-
     def run(self):
         self.btn_menu.clicked.connect(self.menu_return)
         self.btn_instruction.clicked.connect(self.instruction)
