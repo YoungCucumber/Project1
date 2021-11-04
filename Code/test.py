@@ -14,10 +14,10 @@ class Test(QMainWindow):
         self.answers = []
         self.keys = []
         self.cword = 0
+        self.btn_apply.clicked.connect(self.run)
         self.run()
 
     def run(self):
-        self.btn_apply.clicked.connect(self.run)
         self.btn_menu.clicked.connect(self.menu_return)
         self.progressbr.setValue(START_STATUSBAR)
         self.btngroup = QButtonGroup()
@@ -62,7 +62,7 @@ class Test(QMainWindow):
         self.answers.append(btn.text())
         for i in reversed(range(self.vrtcllayout.count())):
             self.vrtcllayout.itemAt(i).widget().setParent(None)
-        self.cword+=1
+        self.cword += 1
         self.vowels_count()
 
     def set_enabled(self):

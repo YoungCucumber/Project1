@@ -19,7 +19,7 @@ class Registration(QMainWindow):
     def check_password_and_login(self):
         self.statusBar().setStyleSheet(EXCEPTION_STATUSBAR)
         if self.ledit_login.text() == EMPTY_LINE or self.ledit_password.text() == EMPTY_LINE:
-            self.start.check_empty_lines()
+            self.start.check_empty_lines(self)
         else:
             self.create_user()
 
