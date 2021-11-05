@@ -1,4 +1,5 @@
 import csv
+import os
 
 from constants import *
 from test import *
@@ -55,6 +56,8 @@ class Results(QMainWindow):
         self.ledit_total.setEnabled(False)
 
     def test_return(self):
+        os.remove("res.csv")
         self.st = self.test
         self.hide()
         self.st.show()
+

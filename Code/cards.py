@@ -41,20 +41,22 @@ class Cards(QMainWindow):
             self.btn_card.setText(self.all_words_list[self.index_current_word][1].lower())
             self.checkbox_is_favourite()
             self.btn_card.setStyleSheet(BTN_GREY)
+            # self.checkbox_is_favourite()
         else:
-            self.complete(self)
+            self.complete()
 
-    @staticmethod
+
     def change_word(self):
         if self.btn_card_isClicked:
             self.btn_card.setText(self.all_words_list[self.index_current_word][1].lower())
+            # self.checkbox_is_favourite()
             self.btn_card.setStyleSheet(BTN_GREY)
+            # self.checkbox_is_favourite()
         else:
             self.btn_card.setText(self.all_words_list[self.index_current_word][1])
             self.btn_card.setStyleSheet(BTN_RED)
         self.btn_card_isClicked = not self.btn_card_isClicked
 
-    @staticmethod
     def next_word(self):
         if self.index_current_word == len(self.all_words_list) - 1:
             self.index_current_word = 0
@@ -62,7 +64,6 @@ class Cards(QMainWindow):
             self.index_current_word += 1
         self.start()
 
-    @staticmethod
     def complete(self):
         if len(self.all_words_list) > 0:
             self.all_words_list.remove(self.all_words_list[self.index_current_word])
@@ -120,9 +121,8 @@ class Cards(QMainWindow):
 
     def count_rest_words(self):
         self.spnbox_amount.setValue(len(self.all_words_list))
-        self.progressbar_change_value(self)
+        self.progressbar_change_value()
 
-    @staticmethod
     def progressbar_change_value(self):
         self.progressbr.setValue(START_PROGRESSBAR * len(self.all_words_list) / self.len_all_cards_begin)
 

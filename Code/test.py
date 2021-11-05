@@ -72,6 +72,8 @@ class Test(QMainWindow):
         self.st = Results(self.answers, self.keys, self)
         self.hide()
         self.st.show()
+        self.answers = []
+        self.keys = []
 
     def answer(self, btn):
         self.answers.append(btn.text())
@@ -94,6 +96,7 @@ class Test(QMainWindow):
 
     def progressbar_change_value(self):
         self.progressbr.setValue(START_PROGRESSBAR * self.len_all_cards / len(self.all_words_list))
+        self.spnbox_amount.setValue(self.len_all_cards)
 
     def menu_return(self):
         self.st = self.menu
