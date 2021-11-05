@@ -20,7 +20,7 @@ WORDS_TITLE = 'Все слова'
 IMAGE = '../Designs/logo.png'
 IMAGE_RESIZED = 'resized.logo.png'
 FONT_CHECKBOX = 'font-size: 30px'
-SPACE_BETWEEN_COLUMNS = 300
+SPACE_BETWEEN_COLUMNS = 260
 NEW_SIZE_IMAGE = (300, 100)
 ALL_WORDS_AMOUNT = 476
 BTN_GREY = "background-color: rgba(169,169,169,128); border: 0.5; font-size: 30px; color: white"
@@ -32,10 +32,11 @@ INSTRUCTION = ('Отметьте слово галочкой, чтобы доб�
                     'Или уберите галочку, чтобы удалить слово из "Избранных".\n'
                     'При выходе назад данные сохранятся.')
 INSTRUCTION_FAVOURITES = 'Уберите галочку, чтобы убрать слово из избранных.\n При выходе назад данные сохранятся.'
-BTN_CARDS_FAVOURITE_STYLE = 'background-color: rgba(0,144,81,128); border: 50%; font-size: 20px; color: white'
+BTN_CARDS_FAVOURITE_STYLE = 'background-color: rgba(255,38,0,41); border: 50%; font-size: 20px; color: white'
 BTN_CARDS_FAVOURITE_TEXT = 'Заучивание'
-# FILE_FAVOURITE_CARDS = '../Designs/favourite_cards.ui'
+FILE_FAVOURITE_CARDS = '../Designs/favourites_cards.ui'
+FAVOURITE_CARDS_TITLE = 'Заучивание избранных слов'
 LBL_WORD_CHOOSE_AMOUNT = 'Выберите количество вопросов'
-BTN_RES_TEXT = 'Посмотреть результаты?'
 FILE_RESULTS = '../Designs/result.ui'
 RESULTS_TITLE = 'Результаты теста'
+INSTRUCTION_FAVOURITES_CARDS = 'При нажатии на кнопку "Усвоено" слово не будет удалено из избранных'

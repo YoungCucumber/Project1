@@ -17,7 +17,7 @@
    <string notr="true">background-color: rgba(255, 212, 121, 128);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="btn_menu">
+   <widget class="QPushButton" name="btn_back">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -53,9 +53,7 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Для начала выберите
- выберите количество
- карточек</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -159,7 +157,7 @@ background-color: rgba(255, 255, 255, 0);</string>
      <string>Нажмите, чтобы посмотреть ответ</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btn_instruction">
     <property name="geometry">
      <rect>
       <x>650</x>

@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from constants import *
 from PIL import Image
+from cards_favourites import CardsFavourites
 
 
 
@@ -32,7 +33,7 @@ class Favourites(QMainWindow):
         self.formlyt.setHorizontalSpacing(SPACE_BETWEEN_COLUMNS)
         self.widget.setLayout(self.formlyt)
         self.scrlarea_words.setWidget(self.widget)
-        self.create_button()
+        # self.create_button()
 
     def fill_formlayout(self):
         self.fill_list_of_checkboxes()
@@ -63,25 +64,28 @@ class Favourites(QMainWindow):
         msgbox.setStandardButtons(QMessageBox.Ok)
         exit_value = msgbox.exec()
 
-    def create_button(self):
-        self.btn_cards_favourites = QPushButton(self)
-        self.btn_cards_favourites.move(410, 0)
-        self.btn_cards_favourites.resize(191, 61)
-        self.btn_cards_favourites.setStyleSheet(BTN_CARDS_FAVOURITE_STYLE)
-        self.btn_cards_favourites.setText(BTN_CARDS_FAVOURITE_TEXT)
-        # self.btn_cards_favourites.clicked.connect(self.open_cards_favourites)
+    # def create_button(self):
+    #     self.btn_cards_favourites = QPushButton(self)
+    #     self.btn_cards_favourites.move(410, 0)
+    #     self.btn_cards_favourites.resize(191, 61)
+    #     self.btn_cards_favourites.setStyleSheet(BTN_CARDS_FAVOURITE_STYLE)
+    #     self.btn_cards_favourites.setText(BTN_CARDS_FAVOURITE_TEXT)
+    #     self.btn_cards_favourites.clicked.connect(self.open_cards_favourites)
 
     def menu_return(self):
-        for i in self.list_of_checkboxes:
-            if i.isChecked():
-                self.favourite_words.append(i.text())
+        self.save_favourites()
         self.db.fill_favourites(' '.join(self.favourite_words))
         self.st = self.menu
         self.hide()
         self.st.show()
 
-    # def open_cards_favourites(self):
-    #     self.db.fill_favourites(' '.join(self.favourite_words))
-    #     self.st = CardsFavourites(self.db, self)
-    #     self.hide()
-    #     self.st.show()
+    def save_favourites(self):
+        for i in self.list_of_checkboxes:
+            if i.isChecked():
+                self.favourite_words.append(i.text())
+
+    def open_cards_favourites(self):
+        self.save_favourites()
+        self.st = CardsFavourites(self.favourite_words, self)
+        self.hide()
+        self.st.show()
