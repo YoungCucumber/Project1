@@ -199,7 +199,7 @@ background-color: rgba(255, 255, 255, 0);</string>
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="maximum">
-     <number>477</number>
+     <number>476</number>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_choose">

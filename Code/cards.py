@@ -1,7 +1,6 @@
 import random
 
 from PyQt5 import uic, QtWidgets
-from constants import *
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
 
@@ -25,6 +24,7 @@ class Cards(QMainWindow):
         self.progressbr.setValue(START_PROGRESSBAR)
         self.run()
 
+    # Считывание данных с SpinBox и создание списка с рандомными слова(длина списка такаяЮ которая указана в SpinBox)
     def run(self):
         if self.spnbox_amount.value() == 0:
             self.set_enabled()
@@ -44,16 +44,19 @@ class Cards(QMainWindow):
         else:
             self.complete()
 
-
+    # Переворот "карточки" на обратную сторону для показа ответа и наоборот
     def change_word(self):
         if self.btn_card_isClicked:
             self.btn_card.setText(self.all_words_list[self.index_current_word][1].lower())
             self.btn_card.setStyleSheet(BTN_GREY)
+            self.lbl_show.setText(SHOW_ANSWERE)
         else:
             self.btn_card.setText(self.all_words_list[self.index_current_word][1])
             self.btn_card.setStyleSheet(BTN_RED)
+            self.lbl_show.setText(SHOW_BACK)
         self.btn_card_isClicked = not self.btn_card_isClicked
 
+    # Следующее слово (кнопка "Следующее")
     def next_word(self):
         if self.index_current_word == len(self.all_words_list) - 1:
             self.index_current_word = 0
@@ -61,6 +64,7 @@ class Cards(QMainWindow):
             self.index_current_word += 1
         self.start()
 
+    # Удалить слово из списка, чтобы оно больше не появлялось (кнопка "Усвоено")
     def complete(self):
         if len(self.all_words_list) > 0:
             self.all_words_list.remove(self.all_words_list[self.index_current_word])
@@ -76,6 +80,7 @@ class Cards(QMainWindow):
         else:
             self.start()
 
+    # Сделать так, чтобы было невозможно нажимать на кнопки, когда слова закончатся
     def set_enabled(self):
         self.btn_complete.setEnabled(False)
         self.btn_next.setEnabled(False)
@@ -85,6 +90,7 @@ class Cards(QMainWindow):
         self.spnbox_amount.setEnabled(True)
         self.btn_apply.setEnabled(True)
 
+    # Сделать так, чтобы пользоватеть не смог изменить данные в SpinBox, а остальные кнопки работали
     def set_not_enabled(self):
         self.btn_complete.setEnabled(True)
         self.btn_next.setEnabled(True)
@@ -94,6 +100,7 @@ class Cards(QMainWindow):
         self.spnbox_amount.setEnabled(False)
         self.btn_apply.setEnabled(False)
 
+    # Проверка на то, является ли слово избранным
     def checkbox_is_favourite(self):
         favourite_words = self.db.ckeck_is_favourite()
         if len(favourite_words) > 0:
@@ -104,9 +111,11 @@ class Cards(QMainWindow):
                 self.checkbox_addfavourites.setChecked(False)
             self.checkbox_state_changed()
 
+    # Проверка на изменение состояния чекбокса
     def checkbox_state_changed(self):
         self.checkbox_addfavourites.stateChanged.connect(self.checkbox_add_remove)
 
+    # Узнать, поставил ли пользователь галочку или наоборот убрал и соответственно занести данные в таблицу бд
     def checkbox_add_remove(self):
         if (self.checkbox_addfavourites.isChecked()
                 and (self.all_words_list[self.index_current_word][1] not in self.favourite_words_list)):
@@ -116,13 +125,16 @@ class Cards(QMainWindow):
             self.favourite_words_list.remove(self.all_words_list[self.index_current_word][1])
         self.db.fill_favourites(' '.join(self.favourite_words_list))
 
+    # Подсчет оставшихся слов и отображение этого количества в SpinBox
     def count_rest_words(self):
         self.spnbox_amount.setValue(len(self.all_words_list))
         self.progressbar_change_value()
 
+    # Отображение оставшихся слов в процентах в Progressbar
     def progressbar_change_value(self):
         self.progressbr.setValue(START_PROGRESSBAR * len(self.all_words_list) / self.len_all_cards_begin)
 
+    # Возвращение в меню
     def menu_return(self):
         self.st = self.menu
         self.hide()

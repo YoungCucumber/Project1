@@ -1,8 +1,9 @@
+from PyQt5 import uic, QtWidgets
+from PyQt5.QtWidgets import QApplication, QMainWindow
+
 from registration import Registration
 from constants import *
 from menu import Menu
-from PyQt5 import uic, QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow
 
 
 class Entre(QMainWindow):
@@ -18,11 +19,13 @@ class Entre(QMainWindow):
         self.btn_entre.clicked.connect(self.check)
         self.btn_registration.clicked.connect(self.registration)
 
+    # Открытие окна "Регистрация"
     def registration(self):
         self.st = Registration(self.db, self)
         self.hide()
         self.st.show()
 
+    # Проверка на корректность вводимых данных
     def check(self):
         self.statusBar().setStyleSheet(EXCEPTION_STATUSBAR)
         # проверка на пустые поля
@@ -36,6 +39,8 @@ class Entre(QMainWindow):
                     self.statusBar().showMessage(EXCEPTION_PASSWORD)
             else:
                 self.statusBar().showMessage(EXCEPTION_LOGIN)
+
+    # проверка на пустые поля
     @staticmethod
     def check_empty_lines(self):
         if self.ledit_login.text() == EMPTY_LINE and self.ledit_password.text() != EMPTY_LINE:
@@ -45,6 +50,7 @@ class Entre(QMainWindow):
         elif self.ledit_login.text() == EMPTY_LINE and self.ledit_password.text() == EMPTY_LINE:
             self.statusBar().showMessage(ENTER_LOGIN_PASSWORD)
 
+    # Открытие окна "Меню"
     def menu(self):
         self.st = Menu(self.db)
         self.hide()

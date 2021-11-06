@@ -1,6 +1,8 @@
 from PyQt5 import uic, QtWidgets
-from constants import *
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
+
+from constants import *
+
 
 class CardsFavourites(QMainWindow):
     def __init__(self, favourite_words, favourites):
@@ -17,6 +19,7 @@ class CardsFavourites(QMainWindow):
 
     def run(self):
         self.btn_next.clicked.connect(self.next_word)
+        self.btn_instruction.clicked.connect(instruction)
         self.btn_back.clicked.connect(self.favourites_return)
         self.btn_complete.clicked.connect(self.complete)
         self.progressbr.setValue(START_PROGRESSBAR)
@@ -30,15 +33,19 @@ class CardsFavourites(QMainWindow):
         else:
             self.complete()
 
+    # Переворот "карточки" на обратную сторону для показа ответа и наоборот
     def change_word(self):
         if self.btn_card_isClicked:
             self.btn_card.setText(self.favourite_words[self.index_current_word].lower())
             self.btn_card.setStyleSheet(BTN_GREY)
+            self.lbl_show.setText(SHOW_ANSWERE)
         else:
             self.btn_card.setText(self.favourite_words[self.index_current_word])
             self.btn_card.setStyleSheet(BTN_RED)
+            self.lbl_show.setText(SHOW_BACK)
         self.btn_card_isClicked = not self.btn_card_isClicked
 
+    # Удалить слово из списка, чтобы оно больше не появлялось (кнопка "Усвоено")
     def complete(self):
         if len(self.favourite_words) > 0:
             self.favourite_words.remove(self.favourite_words[self.index_current_word])
@@ -54,6 +61,7 @@ class CardsFavourites(QMainWindow):
         else:
             self.start()
 
+    # Следующее слово (кнопка "Следующее")
     def next_word(self):
         if self.index_current_word == len(self.favourite_words) - 1:
             self.index_current_word = 0
@@ -61,6 +69,7 @@ class CardsFavourites(QMainWindow):
             self.index_current_word += 1
         self.start()
 
+    # Message box
     def instruction(self):
         msgbox = QMessageBox()
         msgbox.setIcon(QMessageBox.Information)
@@ -69,14 +78,17 @@ class CardsFavourites(QMainWindow):
         msgbox.setStandardButtons(QMessageBox.Ok)
         exit_value = msgbox.exec()
 
+    # Отображение оставшихся слов в процентах в Progressbar
     def progressbar_change_value(self):
         self.progressbr.setValue(START_PROGRESSBAR * len(self.favourite_words) / self.len_words_begin)
 
+    # Сделать так, чтобы пользоватеть не смог изменить данные в SpinBox, а остальные кнопки работали
     def set_enabled(self):
         self.btn_card.setEnabled(False)
         self.btn_complete.setEnabled(False)
         self.btn_next.setEnabled(False)
 
+    # Вернуться к избранным словам
     def favourites_return(self):
         self.st = self.favourites
         self.hide()

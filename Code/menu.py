@@ -1,18 +1,19 @@
-from PyQt5 import uic, QtWidgets
+from PyQt5 import uic
+from PyQt5.QtWidgets import QApplication, QMainWindow
+
 from constants import *
 from cards import Cards
 from favourites import Favourites
 from test import Test
 from words import Words
-from PyQt5.QtWidgets import QApplication, QMainWindow
 
 
 class Menu(QMainWindow):
     def __init__(self, db):
         super().__init__()
-        uic.loadUi('../Designs/menu.ui', self)
+        uic.loadUi(FILE_MENU, self)
         self.db = db
-        self.setWindowTitle('Меню')
+        self.setWindowTitle(MENU_TITLE)
         self.run()
 
     def run(self):
@@ -21,21 +22,25 @@ class Menu(QMainWindow):
         self.btn_words.clicked.connect(self.words)
         self.btn_test.clicked.connect(self.test)
 
+    # Открытие окна "Карточки"
     def cards(self):
         self.st = Cards(self.db, self)
         self.hide()
         self.st.show()
 
+    # Открытие окна "Тест"
     def test(self):
         self.st = Test(self.db, self)
         self.hide()
         self.st.show()
 
+    # Открытие окна "Все слова"
     def words(self):
         self.st = Words(self.db, self)
         self.hide()
         self.st.show()
 
+    # Открытие окна "Избранное"
     def favourites(self):
         self.st = Favourites(self.db, self)
         self.hide()

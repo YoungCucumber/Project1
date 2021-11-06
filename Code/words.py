@@ -1,9 +1,10 @@
 from PyQt5 import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from constants import *
-from PIL import Image
 
+from constants import *
+
+from PIL import Image
 
 
 class Words(QMainWindow):
@@ -18,9 +19,12 @@ class Words(QMainWindow):
         self.adjust_image()
         self.run()
 
+    # Для сжатия логотипа программы, потому что он не помещается в отведенное ему пространство в дизайнере
     def adjust_image(self):
         im = Image.open(IMAGE)
-        im2 = im.resize(NEW_SIZE_IMAGE)
+        width = 300
+        height = 100
+        im2 = im.resize((width, height))
         im2.save(IMAGE_RESIZED)
 
     def run(self):
@@ -33,11 +37,13 @@ class Words(QMainWindow):
         self.widget.setLayout(self.formlyt)
         self.scrlarea_words.setWidget(self.widget)
 
+    # заполнение Layout чекбоксами
     def fill_formlayout(self):
         self.fill_list_of_checkboxes()
         for j in range(0, ALL_WORDS_AMOUNT, 2):
             self.formlyt.addRow(self.list_of_checkboxes[j], self.list_of_checkboxes[j + 1])
 
+    # Создание списка с чекбоксами, на которых написаны слова
     def fill_list_of_checkboxes(self):
         self.is_favourite = self.db.ckeck_is_favourite()
         if len(self.is_favourite) > 0:
@@ -51,10 +57,12 @@ class Words(QMainWindow):
                 self.set_checked()
             self.list_of_checkboxes.append(self.checkbox)
 
+    # Проверка, является ли слово избранным. Если да, то отметить его галочкой
     def set_checked(self):
         if self.text in self.is_favourite:
             self.checkbox.setChecked(True)
 
+    # Message Box
     def instruction(self):
         msgbox = QMessageBox()
         msgbox.setIcon(QMessageBox.Information)
@@ -63,10 +71,11 @@ class Words(QMainWindow):
         msgbox.setStandardButtons(QMessageBox.Ok)
         exit_value = msgbox.exec()
 
+    # Возвращение в меню и добавление всех слов, отмеченных галочкой в избранные(обновление таблицы Favourites)
     def menu_return(self):
-        for i in self.list_of_checkboxes:
-            if i.isChecked():
-                self.favourite_words.append(i.text())
+        for checkbox in self.list_of_checkboxes:
+            if checkbox.isChecked():
+                self.favourite_words.append(checkbox.text())
         self.db.fill_favourites(' '.join(self.favourite_words))
         self.st = self.menu
         self.hide()

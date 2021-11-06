@@ -24,6 +24,7 @@ class Results(QMainWindow):
         self.loadtable()
         self.btn_menu.clicked.connect(self.test_return)
 
+    # Создание таблицы и занесение в нее данных с выбранными ответами и правильными
     def loadtable(self):
         with open('res.csv', encoding='utf-8', mode='w') as csvfile:
             self.tablewdgt.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -37,6 +38,7 @@ class Results(QMainWindow):
             self.compute_result()
         self.tablewdgt.resizeColumnsToContents()
 
+    # Расставление баллов
     def set_score(self):
         for i in range(len(self.answers)):
             if str(self.tablewdgt.item(i, 0).text()) == str(self.tablewdgt.item(i, 1).text()):
@@ -48,6 +50,7 @@ class Results(QMainWindow):
         header.setSectionResizeMode(1, QtWidgets.QHeaderView.Stretch)
         header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
 
+    # Подсчет результатов
     def compute_result(self):
         summ = 0
         for i in range(len(self.answers)):
@@ -55,6 +58,7 @@ class Results(QMainWindow):
         self.ledit_total.setText(str(summ))
         self.ledit_total.setEnabled(False)
 
+    # Вернуться к тесту
     def test_return(self):
         os.remove("res.csv")
         self.st = self.test
