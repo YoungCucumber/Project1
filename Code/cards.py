@@ -41,7 +41,6 @@ class Cards(QMainWindow):
             self.btn_card.setText(self.all_words_list[self.index_current_word][1].lower())
             self.checkbox_is_favourite()
             self.btn_card.setStyleSheet(BTN_GREY)
-            # self.checkbox_is_favourite()
         else:
             self.complete()
 
@@ -49,9 +48,7 @@ class Cards(QMainWindow):
     def change_word(self):
         if self.btn_card_isClicked:
             self.btn_card.setText(self.all_words_list[self.index_current_word][1].lower())
-            # self.checkbox_is_favourite()
             self.btn_card.setStyleSheet(BTN_GREY)
-            # self.checkbox_is_favourite()
         else:
             self.btn_card.setText(self.all_words_list[self.index_current_word][1])
             self.btn_card.setStyleSheet(BTN_RED)

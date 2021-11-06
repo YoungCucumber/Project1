@@ -9,43 +9,57 @@ class CardsFavourites(QMainWindow):
         self.favourite_words = favourite_words
         uic.loadUi(FILE_FAVOURITE_CARDS, self)
         self.setWindowTitle(FAVOURITE_CARDS_TITLE)
-        self.count = 0
+        self.index_current_word = 0
+        self.btn_card_isClicked = False
+        self.len_words_begin = len(self.favourite_words)
+        self.btn_card.clicked.connect(self.change_word)
         self.run()
 
     def run(self):
-        self.btn_instruction.clicked.connect(self.instruction)
-        # self.btn_next.clicked.connect(self.next_word)
+        self.btn_next.clicked.connect(self.next_word)
         self.btn_back.clicked.connect(self.favourites_return)
-        self.btn_card.setText(self.favourite_words[0].lower())
-        # self.btn_complete.clicked.connect(self.complete)
+        self.btn_complete.clicked.connect(self.complete)
+        self.progressbr.setValue(START_PROGRESSBAR)
         self.start()
 
     def start(self):
-        for i in range(len(self.favourite_words)):
-            if self.count == 0:
-                self.btn_card.clicked.connect(lambda: self.change_red(i))
-                self.btn_next.clicked.connect(lambda: self.next_word(i))
-                self.btn_complete.clicked.connect(lambda: self.complete(i))
-            elif self.count == 1:
-                self.btn_card.clicked.connect(lambda: self.change_grey(i))
-                self.btn_next.clicked.connect(lambda: self.next_word(i))
-                self.btn_complete.clicked.connect(lambda: self.complete(i))
+        self.btn_card_isClicked = False
+        if self.index_current_word >= 0:
+            self.btn_card.setText(self.favourite_words[self.index_current_word].lower())
+            self.btn_card.setStyleSheet(BTN_GREY)
+        else:
+            self.complete()
 
-    def change_red(self, i):
-        self.btn_card.setText(self.favourite_words[i].lower())
-        self.btn_card.setStyleSheet(BTN_RED)
-        self.count = 1
+    def change_word(self):
+        if self.btn_card_isClicked:
+            self.btn_card.setText(self.favourite_words[self.index_current_word].lower())
+            self.btn_card.setStyleSheet(BTN_GREY)
+        else:
+            self.btn_card.setText(self.favourite_words[self.index_current_word])
+            self.btn_card.setStyleSheet(BTN_RED)
+        self.btn_card_isClicked = not self.btn_card_isClicked
 
-    def change_grey(self, i):
-        self.btn_card.setText(self.favourite_words[i])
-        self.btn_card.setStyleSheet(BTN_GREY)
-        self.count = 0
+    def complete(self):
+        if len(self.favourite_words) > 0:
+            self.favourite_words.remove(self.favourite_words[self.index_current_word])
+            self.progressbar_change_value()
+            if self.index_current_word == len(self.favourite_words) - 1:
+                self.index_current_word = 0
+            if self.index_current_word > len(self.favourite_words) - 1:
+                self.index_current_word = 0
+        if len(self.favourite_words) == 0:
+            self.btn_card.setText(END)
+            self.set_enabled()
+            self.progressbr.setValue(START_PROGRESSBAR)
+        else:
+            self.start()
 
-    def next_word(self, i):
-        i += 1
-
-    def complete(self, i):
-        self.favourite_words.remove(self.favourite_words[i])
+    def next_word(self):
+        if self.index_current_word == len(self.favourite_words) - 1:
+            self.index_current_word = 0
+        else:
+            self.index_current_word += 1
+        self.start()
 
     def instruction(self):
         msgbox = QMessageBox()
@@ -55,9 +69,15 @@ class CardsFavourites(QMainWindow):
         msgbox.setStandardButtons(QMessageBox.Ok)
         exit_value = msgbox.exec()
 
+    def progressbar_change_value(self):
+        self.progressbr.setValue(START_PROGRESSBAR * len(self.favourite_words) / self.len_words_begin)
+
+    def set_enabled(self):
+        self.btn_card.setEnabled(False)
+        self.btn_complete.setEnabled(False)
+        self.btn_next.setEnabled(False)
+
     def favourites_return(self):
         self.st = self.favourites
         self.hide()
         self.st.show()
-
-

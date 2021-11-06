@@ -55,12 +55,12 @@
       </property>
       <column>
        <property name="text">
-        <string>Новый столбец</string>
+        <string>Ваш ответ</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Ваш ответ</string>
+        <string>Правильный ответ</string>
        </property>
       </column>
       <column>
