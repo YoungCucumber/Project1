@@ -54,11 +54,12 @@ class DataBase:
         return self.cur.execute(value, (i,)).fetchone()
 
     def fill_favourites(self, favourite_words):
-        value = f"""INSERT or REPLACE INTO {FAVOURITES} VALUES(?, ?)"""
-        self.cur.execute(value, (self.current_user, favourite_words))
+        # value = f"""INSERT or REPLACE INTO {FAVOURITES} VALUES(?, ?)"""
+        value = f"""UPDATE {FAVOURITES} SET {FAVOURITE_WORD}=? WHERE ID=?"""
+        self.cur.execute(value, (favourite_words, self.current_user))
         self.con.commit()
 
     def ckeck_is_favourite(self):
-        value = f"""SELECT word FROM {FAVOURITES} WHERE {ID}=?"""
+        value = f"""SELECT {FAVOURITE_WORD} FROM {FAVOURITES} WHERE {ID}=?"""
         favourites_string = (self.cur.execute(value, (self.current_user,)).fetchall())
         return favourites_string
