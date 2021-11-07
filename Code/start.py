@@ -1,9 +1,12 @@
+import sys
+
 from PyQt5 import uic, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
 from registration import Registration
 from constants import *
 from menu import Menu
+from adjust_db import DataBase
 
 
 class Entre(QMainWindow):
@@ -11,7 +14,7 @@ class Entre(QMainWindow):
         super().__init__()
         self.db = db
         uic.loadUi(FILE_ENTRE, self)
-        app.setStyle('Windows')
+        app.setStyle('Fusion')
         self.setWindowTitle(ENTRE_TITLE)
         self.run()
 
@@ -55,3 +58,11 @@ class Entre(QMainWindow):
         self.st = Menu(self.db)
         self.hide()
         self.st.show()
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    db = DataBase()
+    ex = Entre(db, app)
+    ex.show()
+    sys.exit(app.exec())

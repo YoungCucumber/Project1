@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    app.setStyle("Windows")
+    app.setStyle("Fusion")
     db = DataBase()
     ex = Entre(db, app)
     ex.show()
