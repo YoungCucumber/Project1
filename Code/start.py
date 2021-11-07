@@ -14,7 +14,6 @@ class Entre(QMainWindow):
         super().__init__()
         self.db = db
         uic.loadUi(FILE_ENTRE, self)
-        app.setStyle('Fusion')
         self.setWindowTitle(ENTRE_TITLE)
         self.run()
 
@@ -58,11 +57,3 @@ class Entre(QMainWindow):
         self.st = Menu(self.db)
         self.hide()
         self.st.show()
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    db = DataBase()
-    ex = Entre(db, app)
-    ex.show()
-    sys.exit(app.exec())
