@@ -42,8 +42,8 @@ END = 'Слова закончились!'
 START_PROGRESSBAR = 100
 
 # Изображегния логотипа
-IMAGE = '../Designs/logo.png'
-IMAGE_RESIZED = 'resized.logo.png'
+IMAGE = '../Not programming code/logo.png'
+IMAGE_RESIZED = '../Not programming code/resized.logo.png'
 
 # Шрифт для CheckBox в окнах "Все слова" и "Избранное"
 FONT_CHECKBOX = 'font-size: 30px'
@@ -75,10 +75,10 @@ SHOW_BACK = 'Нажмите, чтобы увидеть обратную стор
 SHOW_ANSWERE = 'Нажмите, чтобы посмотреть ответ'
 
 # Файл со всеми словами (txt)
-FILE_WITH_ALL_WORDS = 'words.txt'
+FILE_WITH_ALL_WORDS = '../Not programming code/words.txt'
 
 # База данных
-DATA_BASE = 'EGEstresses.db'
+DATA_BASE = '../Not programming code/EGEstresses.db'
 
 # Таблицы базы данных
 USERS = 'Users'
