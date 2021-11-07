@@ -1,4 +1,4 @@
-import random
+from constants import *
 
 from PyQt5 import uic, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow
