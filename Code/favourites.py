@@ -81,6 +81,8 @@ class Favourites(QMainWindow):
         self.btn_cards_favourites.resize(191, 61)
         self.btn_cards_favourites.setStyleSheet(BTN_CARDS_FAVOURITE_STYLE)
         self.btn_cards_favourites.setText(BTN_CARDS_FAVOURITE_TEXT)
+        if len(self.list_of_checkboxes) == 0:
+            self.btn_cards_favourites.setEnabled(False)
         self.btn_cards_favourites.clicked.connect(self.open_cards_favourites)
 
     # Возвращение в меню и добавление всех слов, отмеченных галочкой в избранные(обновление таблицы Favourites)
