@@ -19,7 +19,7 @@ class CardsFavourites(QMainWindow):
 
     def run(self):
         self.btn_next.clicked.connect(self.next_word)
-        self.btn_instruction.clicked.connect(instruction)
+        self.btn_instruction.clicked.connect(self.instruction)
         self.btn_back.clicked.connect(self.favourites_return)
         self.btn_complete.clicked.connect(self.complete)
         self.progressbr.setValue(START_PROGRESSBAR)
