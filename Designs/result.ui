@@ -153,7 +153,7 @@ color: rgb(255, 255, 255);</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Code/resized.logo.png</pixmap>
+     <pixmap>../Not programming code/resized.logo.png</pixmap>
     </property>
    </widget>
   </widget>

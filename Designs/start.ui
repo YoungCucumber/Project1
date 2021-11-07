@@ -100,7 +100,7 @@ color: rgb(255, 255, 255);</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>logo.png</pixmap>
+     <pixmap>../Not programming code/logo.png</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_login">
