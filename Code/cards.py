@@ -1,15 +1,13 @@
 from constants import *
-
 from PyQt5 import uic, QtWidgets
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow
-from Uicfiles.cardsui import Ui_MainWindow
 
 
-class Cards(QMainWindow, Ui_MainWindow):
+class Cards(QMainWindow):
     def __init__(self, db, menu):
         super().__init__()
-        self.setupUi(self)
+        uic.loadUi(FILE_CARDS, self)
         self.db = db
         self.menu = menu
         self.setWindowTitle(CARDS_TITLE)
@@ -82,7 +80,6 @@ class Cards(QMainWindow, Ui_MainWindow):
                 self.index_current_word = 0
         if len(self.all_words_list) == 0:
             self.btn_card.setText(END)
-            self.progressbr.setValue(START_PROGRESSBAR)
             self.set_enabled()
         else:
             self.start()

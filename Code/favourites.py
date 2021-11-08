@@ -4,17 +4,16 @@ from PyQt5.QtGui import *
 
 from constants import *
 from cards_favourites import CardsFavourites
-from Uicfiles.wordsui import Ui_MainWindow
 
 from PIL import Image
 
 
-class Favourites(QMainWindow, Ui_MainWindow):
+class Favourites(QMainWindow):
     def __init__(self, db, menu):
         super().__init__()
+        uic.loadUi(FILE_WORDS, self)
         self.menu = menu
         self.db = db
-        self.setupUi(self)
         self.setWindowTitle(FAVOURITES_TITLE)
         self.favourite_words = []
         self.list_of_checkboxes = []

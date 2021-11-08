@@ -3,15 +3,14 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
 
 from constants import *
-from Uicfiles.favourites_cardsui import Ui_MainWindow
 
 
-class CardsFavourites(QMainWindow, Ui_MainWindow):
+class CardsFavourites(QMainWindow):
     def __init__(self, favourite_words, favourites):
         super().__init__()
+        uic.loadUi(FILE_FAVOURITE_CARDS, self)
         self.favourites = favourites
         self.favourite_words = favourite_words
-        self.setupUi(self)
         self.setWindowTitle(FAVOURITE_CARDS_TITLE)
         self.index_current_word = 0
         self.btn_card_isClicked = False
@@ -64,7 +63,6 @@ class CardsFavourites(QMainWindow, Ui_MainWindow):
         if len(self.favourite_words) == 0:
             self.btn_card.setText(END)
             self.set_enabled()
-            self.progressbr.setValue(START_PROGRESSBAR)
         else:
             self.start()
 

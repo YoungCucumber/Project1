@@ -7,13 +7,12 @@ from cards import Cards
 from favourites import Favourites
 from test import Test
 from words import Words
-from Uicfiles.menuui import Ui_MainWindow
 
 
-class Menu(QMainWindow, Ui_MainWindow):
+class Menu(QMainWindow):
     def __init__(self, db):
         super().__init__()
-        self.setupUi(self)
+        uic.loadUi(FILE_MENU, self)
         self.db = db
         self.setWindowTitle(MENU_TITLE)
         self.run()

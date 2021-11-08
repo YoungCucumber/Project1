@@ -4,16 +4,15 @@ from results import Results
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QPixmap
 from PyQt5 import uic
-from Uicfiles.testui import Ui_MainWindow
 
 # Гласные буквы русского алфавита
 vowels = 'ауоыиэяюёе'
 
 
-class Test(QMainWindow, Ui_MainWindow):
+class Test(QMainWindow):
     def __init__(self, db, menu):
         super().__init__()
-        self.setupUi(self)
+        uic.loadUi(FILE_TEST, self)
         self.db = db
         self.menu = menu
         self.setWindowTitle(TEST_TITLE)

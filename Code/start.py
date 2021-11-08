@@ -5,13 +5,12 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from registration import Registration
 from constants import *
 from menu import Menu
-from Uicfiles.startui import Ui_start_window
 
 
-class Entre(QMainWindow, Ui_start_window):
-    def __init__(self, db, app):
+class Entre(QMainWindow):
+    def __init__(self, db):
         super().__init__()
-        self.setupUi(self)
+        uic.loadUi(FILE_ENTRE, self)
         self.db = db
         self.setWindowTitle(ENTRE_TITLE)
         self.run()

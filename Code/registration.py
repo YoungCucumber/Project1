@@ -4,13 +4,12 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 
 from menu import Menu
 from constants import *
-from Uicfiles.registrationui import Ui_start_window
 
 
-class Registration(QMainWindow, Ui_start_window):
+class Registration(QMainWindow):
     def __init__(self, db, start):
         super().__init__()
-        self.setupUi(self)
+        uic.loadUi(FILE_REGISTRATION, self)
         self.db = db
         self.start = start
         self.setWindowTitle(REGISTRATION_TITLE)

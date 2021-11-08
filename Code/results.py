@@ -7,15 +7,14 @@ from PyQt5.QtWidgets import QMainWindow, QTableWidgetItem, QAbstractItemView
 from PyQt5.QtGui import QPixmap
 from PyQt5 import uic
 from PyQt5 import QtWidgets
-from uicfiles.resultui import Ui_MainWindow
 
 vowels = 'ауоыиэяюёе'
 
 
-class Results(QMainWindow, Ui_MainWindow):
+class Results(QMainWindow):
     def __init__(self, answers, keys, test):
         super().__init__()
-        self.setupUi(self)
+        uic.loadUi(FILE_RESULTS, self)
         self.answers = answers
         self.keys = keys
         self.test = test
