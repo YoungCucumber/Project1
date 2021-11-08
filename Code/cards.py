@@ -1,6 +1,5 @@
 from constants import *
 from PyQt5 import uic, QtWidgets
-from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
 
@@ -15,11 +14,6 @@ class Cards(QMainWindow):
         self.btn_card.clicked.connect(self.change_word)
         self.btn_card_isClicked = False
         self.run_functions()
-        self.set_image()
-
-    def set_image(self):
-        self.pixmap = QPixmap(IMAGE)
-        self.lbl_logo.setPixmap(self.pixmap)
 
     def run_functions(self):
         self.btn_apply.clicked.connect(self.run)

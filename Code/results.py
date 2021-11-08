@@ -4,7 +4,6 @@ import os
 from test import *
 from constants import *
 from PyQt5.QtWidgets import QMainWindow, QTableWidgetItem, QAbstractItemView
-from PyQt5.QtGui import QPixmap
 from PyQt5 import uic
 from PyQt5 import QtWidgets
 
@@ -19,11 +18,6 @@ class Results(QMainWindow):
         self.keys = keys
         self.test = test
         self.run()
-        self.set_image()
-
-    def set_image(self):
-        self.pixmap = QPixmap(IMAGE_RESIZED)
-        self.lbl_logo.setPixmap(self.pixmap)
 
     def run(self):
         self.loadtable()

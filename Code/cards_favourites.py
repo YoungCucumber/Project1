@@ -1,5 +1,4 @@
 from PyQt5 import uic, QtWidgets
-from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
 
 from constants import *
@@ -17,11 +16,6 @@ class CardsFavourites(QMainWindow):
         self.len_words_begin = len(self.favourite_words)
         self.btn_card.clicked.connect(self.change_word)
         self.run()
-        self.set_image()
-
-    def set_image(self):
-        self.pixmap = QPixmap('logo.png')
-        self.lbl_logo.setPixmap(self.pixmap)
 
     def run(self):
         self.btn_next.clicked.connect(self.next_word)

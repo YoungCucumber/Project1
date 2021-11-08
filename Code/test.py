@@ -2,7 +2,6 @@ from constants import *
 from results import Results
 
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QPixmap
 from PyQt5 import uic
 
 # Гласные буквы русского алфавита
@@ -21,11 +20,6 @@ class Test(QMainWindow):
         self.cword = 0
         self.btn_apply.clicked.connect(self.run)
         self.run()
-        self.set_image()
-
-    def set_image(self):
-        self.pixmap = QPixmap(IMAGE)
-        self.lbl_logo_2.setPixmap(self.pixmap)
 
     def run(self):
         self.btn_menu.clicked.connect(self.menu_return)

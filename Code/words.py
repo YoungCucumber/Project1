@@ -27,8 +27,6 @@ class Words(QMainWindow):
         height = 100
         im2 = im.resize((width, height))
         im2.save(IMAGE_RESIZED)
-        self.pixmax = QPixmap(IMAGE_RESIZED)
-        self.lbl_logo.setPixmap(self.pixmax)
 
     def run(self):
         self.btn_menu.clicked.connect(self.menu_return)

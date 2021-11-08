@@ -1,5 +1,4 @@
 from PyQt5 import uic, QtWidgets
-from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
 from menu import Menu
@@ -14,11 +13,6 @@ class Registration(QMainWindow):
         self.start = start
         self.setWindowTitle(REGISTRATION_TITLE)
         self.run()
-        self.set_image()
-
-    def set_image(self):
-        self.pixmap = QPixmap('logo.png')
-        self.lbl_logo.setPixmap(self.pixmap)
 
     def run(self):
         self.btn_ok.clicked.connect(self.check_password_and_login)

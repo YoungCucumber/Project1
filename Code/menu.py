@@ -1,5 +1,4 @@
 from PyQt5 import uic
-from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
 from constants import *
@@ -16,11 +15,6 @@ class Menu(QMainWindow):
         self.db = db
         self.setWindowTitle(MENU_TITLE)
         self.run()
-        self.set_image()
-
-    def set_image(self):
-        self.pixmap = QPixmap('logo.png')
-        self.lbl_logo.setPixmap(self.pixmap)
 
     def run(self):
         self.btn_cards.clicked.connect(self.cards)

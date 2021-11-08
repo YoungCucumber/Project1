@@ -1,5 +1,4 @@
 from PyQt5 import uic, QtWidgets
-from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
 from registration import Registration
@@ -14,11 +13,6 @@ class Entre(QMainWindow):
         self.db = db
         self.setWindowTitle(ENTRE_TITLE)
         self.run()
-        self.set_image()
-
-    def set_image(self):
-        self.pixmap = QPixmap('logo.png')
-        self.lbl_logo.setPixmap(self.pixmap)
 
     def run(self):
         self.btn_entre.clicked.connect(self.check)
