@@ -1,18 +1,25 @@
 from PyQt5 import uic, QtWidgets
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
 from menu import Menu
 from constants import *
+from Uicfiles.registrationui import Ui_start_window
 
 
-class Registration(QMainWindow):
+class Registration(QMainWindow, Ui_start_window):
     def __init__(self, db, start):
         super().__init__()
+        self.setupUi(self)
         self.db = db
         self.start = start
-        uic.loadUi(FILE_REGISTRATION, self)
         self.setWindowTitle(REGISTRATION_TITLE)
         self.run()
+        self.set_image()
+
+    def set_image(self):
+        self.pixmap = QPixmap('logo.png')
+        self.lbl_logo.setPixmap(self.pixmap)
 
     def run(self):
         self.btn_ok.clicked.connect(self.check_password_and_login)

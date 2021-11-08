@@ -1,21 +1,25 @@
-import sys
-
 from PyQt5 import uic, QtWidgets
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
 from registration import Registration
 from constants import *
 from menu import Menu
-from adjust_db import DataBase
+from Uicfiles.startui import Ui_start_window
 
 
-class Entre(QMainWindow):
+class Entre(QMainWindow, Ui_start_window):
     def __init__(self, db, app):
         super().__init__()
+        self.setupUi(self)
         self.db = db
-        uic.loadUi(FILE_ENTRE, self)
         self.setWindowTitle(ENTRE_TITLE)
         self.run()
+        self.set_image()
+
+    def set_image(self):
+        self.pixmap = QPixmap('logo.png')
+        self.lbl_logo.setPixmap(self.pixmap)
 
     def run(self):
         self.btn_entre.clicked.connect(self.check)

@@ -1,16 +1,19 @@
 from constants import *
-from PyQt5.QtWidgets import *
-from PyQt5 import uic
 from results import Results
+
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import QPixmap
+from PyQt5 import uic
+from Uicfiles.testui import Ui_MainWindow
 
 # Гласные буквы русского алфавита
 vowels = 'ауоыиэяюёе'
 
 
-class Test(QMainWindow):
+class Test(QMainWindow, Ui_MainWindow):
     def __init__(self, db, menu):
         super().__init__()
-        uic.loadUi(FILE_TEST, self)
+        self.setupUi(self)
         self.db = db
         self.menu = menu
         self.setWindowTitle(TEST_TITLE)
@@ -19,6 +22,11 @@ class Test(QMainWindow):
         self.cword = 0
         self.btn_apply.clicked.connect(self.run)
         self.run()
+        self.set_image()
+
+    def set_image(self):
+        self.pixmap = QPixmap(IMAGE)
+        self.lbl_logo_2.setPixmap(self.pixmap)
 
     def run(self):
         self.btn_menu.clicked.connect(self.menu_return)

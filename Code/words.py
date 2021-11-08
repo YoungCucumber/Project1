@@ -3,21 +3,23 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
 from constants import *
+from Uicfiles.wordsui import Ui_MainWindow
 
 from PIL import Image
 
 
-class Words(QMainWindow):
+class Words(QMainWindow, Ui_MainWindow):
     def __init__(self, db, menu):
         super().__init__()
         self.menu = menu
         self.db = db
-        uic.loadUi(FILE_WORDS, self)
+        self.setupUi(self)
         self.setWindowTitle(WORDS_TITLE)
         self.favourite_words = []
         self.list_of_checkboxes = []
         self.adjust_image()
         self.run()
+        self.adjust_image()
 
     # Для сжатия логотипа программы, потому что он не помещается в отведенное ему пространство в дизайнере
     def adjust_image(self):
@@ -26,6 +28,8 @@ class Words(QMainWindow):
         height = 100
         im2 = im.resize((width, height))
         im2.save(IMAGE_RESIZED)
+        self.pixmax = QPixmap(IMAGE_RESIZED)
+        self.lbl_logo.setPixmap(self.pixmax)
 
     def run(self):
         self.btn_menu.clicked.connect(self.menu_return)

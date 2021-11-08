@@ -56,7 +56,7 @@ color: rgb(255, 255, 255);</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="lbl_logo">
     <property name="geometry">
      <rect>
       <x>120</x>

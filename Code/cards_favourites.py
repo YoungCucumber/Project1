@@ -1,21 +1,28 @@
 from PyQt5 import uic, QtWidgets
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
 
 from constants import *
+from Uicfiles.favourites_cardsui import Ui_MainWindow
 
 
-class CardsFavourites(QMainWindow):
+class CardsFavourites(QMainWindow, Ui_MainWindow):
     def __init__(self, favourite_words, favourites):
         super().__init__()
         self.favourites = favourites
         self.favourite_words = favourite_words
-        uic.loadUi(FILE_FAVOURITE_CARDS, self)
+        self.setupUi(self)
         self.setWindowTitle(FAVOURITE_CARDS_TITLE)
         self.index_current_word = 0
         self.btn_card_isClicked = False
         self.len_words_begin = len(self.favourite_words)
         self.btn_card.clicked.connect(self.change_word)
         self.run()
+        self.set_image()
+
+    def set_image(self):
+        self.pixmap = QPixmap('logo.png')
+        self.lbl_logo.setPixmap(self.pixmap)
 
     def run(self):
         self.btn_next.clicked.connect(self.next_word)

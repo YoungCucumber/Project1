@@ -11,14 +11,14 @@ EMPTY_LINE = ''
 LOGIN_EXIST = 'Пользователь с таким логином уже существует'
 
 # Дизайны
-FILE_ENTRE = '../Designs/start.ui'
-FILE_REGISTRATION = '../Designs/registration.ui'
-FILE_MENU = '../Designs/menu.ui'
-FILE_CARDS = '../Designs/cards.ui'
-FILE_WORDS = '../Designs/words.ui'
-FILE_TEST = '../Designs/test.ui'
-FILE_FAVOURITE_CARDS = '../Designs/favourites_cards.ui'
-FILE_RESULTS = '../Designs/result.ui'
+FILE_ENTRE = 'start.ui'
+FILE_REGISTRATION = 'registration.ui'
+FILE_MENU = 'menu.ui'
+FILE_CARDS = 'cards.ui'
+FILE_WORDS = 'words.ui'
+FILE_TEST = 'test.ui'
+FILE_FAVOURITE_CARDS = 'favourites_cards.ui'
+FILE_RESULTS = 'result.ui'
 
 # Названия окон
 ENTRE_TITLE = 'Вход'
@@ -42,8 +42,8 @@ END = 'Слова закончились!'
 START_PROGRESSBAR = 100
 
 # Изображегния логотипа
-IMAGE = '../Not programming code/logo.png'
-IMAGE_RESIZED = '../Not programming code/resized.logo.png'
+IMAGE = 'logo.png'
+IMAGE_RESIZED = 'resized.logo.png'
 
 # Шрифт для CheckBox в окнах "Все слова" и "Избранное"
 FONT_CHECKBOX = 'font-size: 30px'
@@ -75,10 +75,10 @@ SHOW_BACK = 'Нажмите, чтобы увидеть обратную стор
 SHOW_ANSWERE = 'Нажмите, чтобы посмотреть ответ'
 
 # Файл со всеми словами (txt)
-FILE_WITH_ALL_WORDS = '../Not programming code/words.txt'
+FILE_WITH_ALL_WORDS = 'words.txt'
 
 # База данных
-DATA_BASE = '../Not programming code/EGEstresses.db'
+DATA_BASE = 'EGEstresses.db'
 
 # Таблицы базы данных
 USERS = 'Users'

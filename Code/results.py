@@ -1,24 +1,30 @@
 import csv
 import os
 
-from constants import *
 from test import *
+from constants import *
 from PyQt5.QtWidgets import QMainWindow, QTableWidgetItem, QAbstractItemView
+from PyQt5.QtGui import QPixmap
 from PyQt5 import uic
 from PyQt5 import QtWidgets
+from uicfiles.resultui import Ui_MainWindow
 
 vowels = 'ауоыиэяюёе'
 
 
-class Results(QMainWindow):
+class Results(QMainWindow, Ui_MainWindow):
     def __init__(self, answers, keys, test):
         super().__init__()
-        uic.loadUi(FILE_RESULTS, self)
+        self.setupUi(self)
         self.answers = answers
         self.keys = keys
         self.test = test
-        self.setWindowTitle(RESULTS_TITLE)
         self.run()
+        self.set_image()
+
+    def set_image(self):
+        self.pixmap = QPixmap(IMAGE_RESIZED)
+        self.lbl_logo.setPixmap(self.pixmap)
 
     def run(self):
         self.loadtable()
