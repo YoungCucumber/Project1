@@ -79,7 +79,7 @@ class CardsFavourites(QMainWindow):
 
     # Отображение оставшихся слов в процентах в Progressbar
     def progressbar_change_value(self):
-        self.progressbr.setValue(START_PROGRESSBAR * len(self.favourite_words) / self.len_words_begin)
+        self.progressbr.setValue(int(START_PROGRESSBAR * len(self.favourite_words) / self.len_words_begin))
 
     # Сделать так, чтобы пользоватеть не смог изменить данные в SpinBox, а остальные кнопки работали
     def set_enabled(self):

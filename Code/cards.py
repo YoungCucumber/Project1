@@ -130,7 +130,7 @@ class Cards(QMainWindow):
 
     # Отображение оставшихся слов в процентах в Progressbar
     def progressbar_change_value(self):
-        self.progressbr.setValue(START_PROGRESSBAR * len(self.all_words_list) / self.len_all_cards_begin)
+        self.progressbr.setValue(int(START_PROGRESSBAR * len(self.all_words_list) / self.len_all_cards_begin))
 
     # Возвращение в меню
     def menu_return(self):
