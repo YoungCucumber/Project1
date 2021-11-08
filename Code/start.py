@@ -45,12 +45,15 @@ class Entre(QMainWindow):
     # проверка на пустые поля
     @staticmethod
     def check_empty_lines(self):
-        if self.ledit_login.text() == EMPTY_LINE and self.ledit_password.text() != EMPTY_LINE:
-            self.statusBar().showMessage(ENTER_LOGIN)
-        elif self.ledit_password.text() == EMPTY_LINE and self.ledit_login.text() != EMPTY_LINE:
-            self.statusBar().showMessage(ENTER_PASSWORD)
-        elif self.ledit_login.text() == EMPTY_LINE and self.ledit_password.text() == EMPTY_LINE:
-            self.statusBar().showMessage(ENTER_LOGIN_PASSWORD)
+        try:
+            if self.ledit_login.text() == EMPTY_LINE and self.ledit_password.text() != EMPTY_LINE:
+                raise Exception(ENTER_LOGIN)
+            elif self.ledit_password.text() == EMPTY_LINE and self.ledit_login.text() != EMPTY_LINE:
+                raise Exception(ENTER_PASSWORD)
+            elif self.ledit_login.text() == EMPTY_LINE and self.ledit_password.text() == EMPTY_LINE:
+                raise Exception(ENTER_LOGIN_PASSWORD)
+        except Exception as error:
+            self.statusBar().showMessage(str(error))
 
     # Открытие окна "Меню"
     def menu(self):
